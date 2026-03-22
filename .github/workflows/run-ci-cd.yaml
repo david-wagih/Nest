@@ -1177,7 +1177,9 @@ jobs:
           load: true
           platforms: linux/amd64
           push: true
-          tags: owasp/nest:backend-production
+          tags: |
+            owasp/nest:backend-production
+            owasp/nest:backend-production-${{ env.RELEASE_VERSION }}
 
       - name: Get backend image size
         id: backend-size
@@ -1230,7 +1232,9 @@ jobs:
           secrets: |
             RELEASE_VERSION=${{ needs.set-release-version.outputs.release_version }}
             SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
-          tags: owasp/nest:frontend-production
+          tags: |
+            owasp/nest:frontend-production
+            owasp/nest:frontend-production-${{ env.RELEASE_VERSION }}
 
       - name: Get frontend image size
         id: frontend-size
